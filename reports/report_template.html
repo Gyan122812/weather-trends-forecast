@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Report</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    h1 { color: #2C3E50; }
+    img { max-width: 700px; margin-bottom: 20px; }
+    table, th, td { border: 1px solid gray; border-collapse: collapse; padding: 8px; }
+  </style>
+</head>
+<body>
+  <h1>📊 Weather Trends & Forecast Report</h1>
+  <p>Generated on: {{ generated_date }}</p>
+
+  <h2>Temperature Trends</h2>
+  <img src="../plots/temperature_trends.png" alt="Temperature Trends">
+
+  <h2>Forecast Plot</h2>
+  <img src="../plots/forecast_plot.png" alt="Forecast Plot">
+
+  <h2>Latest Forecast Data (sample)</h2>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Forecast Temp (°C)</th>
+    </tr>
+    {% for row in forecast_data %}
+    <tr>
+      <td>{{ row['ds'] }}</td>
+      <td>{{ "%.2f"|format(row['yhat']) }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
